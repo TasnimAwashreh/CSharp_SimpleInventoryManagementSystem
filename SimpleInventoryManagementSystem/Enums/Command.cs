@@ -11,6 +11,7 @@ namespace SIMS.Enums
     {
         none,
         insert,
+        view
     }
     public class UserCommands
     {
@@ -20,6 +21,8 @@ namespace SIMS.Enums
             {
                 case "insert": 
                     return Command.insert;
+                case "view":
+                    return Command.view;
                 default:
                     return Command.none;
             }

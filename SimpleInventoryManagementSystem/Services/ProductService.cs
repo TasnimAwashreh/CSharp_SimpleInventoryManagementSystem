@@ -21,6 +21,11 @@ namespace SIMS.Services
             return inventory.Count;
         }
 
+        public List<Product> GetInventory()
+        {
+            return this.inventory;
+        }
+
         public bool InsertProduct(Product product)
         {
             int inventorySize = inventory.Count;

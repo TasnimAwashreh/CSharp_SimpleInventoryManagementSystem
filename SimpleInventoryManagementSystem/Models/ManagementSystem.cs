@@ -1,10 +1,5 @@
 ﻿using SIMS.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using SIMS.Services;
 namespace SIMS.Models
 {
@@ -32,17 +27,31 @@ namespace SIMS.Models
 
                             Product newProduct = new Product(productName, price, quantity);
                             bool isInsertSuccess = _productService.InsertProduct(newProduct);
-                            if (isInsertSuccess) Console.WriteLine($"Product has been inserted successfully. Total Inventory: {_productService.GetCount()} products");
+                            if (isInsertSuccess) Console.WriteLine($"\n Product has been inserted successfully. Total Inventory: {_productService.GetCount()} products");
 
-                            else Console.WriteLine($"Error: Product has not been inserted, please try again");
+                            else Console.WriteLine($"\n Error: Product has not been inserted, please try again");
                         }
-                        catch (FormatException) { Console.WriteLine("Please enter price and quantity as numbers"); }
-                        catch (Exception ex) { Console.WriteLine("Please enter information in the correct format"); }
+                        catch (FormatException) { Console.WriteLine("\n Please enter price and quantity as numbers"); }
+                        catch (Exception ex) { Console.WriteLine("\n Please enter information in the correct format"); }
                     }
                     else Console.WriteLine("Please enter the product name, price, and product quantity to insert");
                     break;
+                case Command.view:
+                    StringBuilder strBuilder = new StringBuilder();
+                    List<Product> inventory = _productService.GetInventory();
+                    if (inventory.Count > 0)
+                    {
+                        strBuilder.Append("\n Inventory: \n");
+                        foreach (Product product in inventory)
+                        {
+                            strBuilder.Append($"- {product.ToString()} \n");
+                        }
+                        Console.WriteLine(strBuilder.ToString());
+                    }
+                    else Console.WriteLine("\n Inventory is currently empty");
+                    break;
                 case Command.none:
-                    Console.WriteLine("Please enter an appropriate action");
+                    Console.WriteLine("\n Please enter an appropriate action");
                     break;
             }
         }

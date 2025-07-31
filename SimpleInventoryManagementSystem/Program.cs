@@ -1,7 +1,6 @@
 ﻿using SIMS.Enums;
 using SIMS.Models;
 using SIMS.Services;
-using System;
 
 class Program
 {
@@ -39,8 +38,9 @@ class Program
             ============================================================================================
             How to Use:
                 - To add a product to the inventory, type in 
-                  insert [product_name] [price] [quantity]
+                  'insert [product_name] [price] [quantity]'
                   Example: insert potato 6.50 7
+                - To view the current inventory, simply type in 'view'
 
             """;
         return controls;
