@@ -51,6 +51,9 @@ class Program
 
                 - To update the product's price:
                   'edit_price [old_price] [new_price]'
+
+                - To delete product:
+                  'delete [product_name]'
             """;
         return controls;
     }
