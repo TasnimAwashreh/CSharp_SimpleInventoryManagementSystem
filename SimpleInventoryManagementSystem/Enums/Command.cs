@@ -11,7 +11,10 @@ namespace SIMS.Enums
     {
         none,
         insert,
-        view
+        view,
+        edit_price,
+        edit_quantity,
+        edit_name,
     }
     public class UserCommands
     {
@@ -23,6 +26,12 @@ namespace SIMS.Enums
                     return Command.insert;
                 case "view":
                     return Command.view;
+                case "edit_price":
+                    return Command.edit_price;
+                case "edit_quantity":
+                    return Command.edit_quantity;
+                case "edit_name":
+                    return Command.edit_name;
                 default:
                     return Command.none;
             }

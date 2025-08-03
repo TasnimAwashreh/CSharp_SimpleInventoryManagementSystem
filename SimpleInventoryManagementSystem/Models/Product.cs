@@ -15,6 +15,25 @@ namespace SIMS.Models
             this.quantity = quantity;
         }
 
+        public string GetName() {return productName;}
+        public decimal GetPrice() {return price;}
+        public int GetQty() {return quantity;}
+
+        public void updateName(string newName)
+        {
+            this.productName = newName;
+        }
+
+        public void updatePrice(decimal newPrice)
+        {
+            this.price = newPrice;
+        }
+
+        public void updateQty(int newQty)
+        {
+            this.quantity = newQty;
+        }
+
         public override string ToString()
         {
             return $"{productName}: Price: {price}; Qty: {quantity}";
