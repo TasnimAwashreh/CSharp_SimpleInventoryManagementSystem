@@ -67,5 +67,16 @@ namespace SIMS.Services
             return true;
         }
 
+        public bool DeleteProduct(Product product)
+        {
+            try
+            {
+                inventory.Remove(product);
+                return true;
+            }
+            catch {return false; }
+            
+        }
+
     }
 }

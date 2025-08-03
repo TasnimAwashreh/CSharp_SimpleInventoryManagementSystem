@@ -33,6 +33,8 @@ namespace SIMS.Models
                 case Command.edit_quantity:
                     edit<int>(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
                     break;
+                case Command.delete: 
+                    delete(productInfo); break;
                 case Command.none:
                     Console.WriteLine("\n Please enter an appropriate action");
                     break;
@@ -105,5 +107,29 @@ namespace SIMS.Models
             else Console.WriteLine($"Please enter commands in the correct form");
         }
 
+        public void delete(string[] productInfo)
+        {
+            if (productInfo.Length == 2)
+            {
+                try
+                {
+                    string productName = productInfo[1];
+
+                    Product? existingProduct = _productService.FindProduct(productName);
+                    if (existingProduct != null)
+                    {
+                        bool isSuccess = _productService.DeleteProduct(existingProduct);
+                        if (isSuccess) Console.WriteLine("Product has been successfully deleted");
+                        else Console.WriteLine("\n There has been a problem deleting the product. Please try again later");
+                    }
+                    else Console.WriteLine($"The product with the name {productName} does not exist");
+                }
+                catch (Exception ex) { Console.WriteLine("\n Please enter information in the correct format"); }
+            }
+            else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
+        }
     }
+
+    
 }
+
