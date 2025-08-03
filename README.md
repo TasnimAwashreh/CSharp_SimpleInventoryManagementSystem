@@ -41,5 +41,10 @@ To change the product's amount, type in:
 
 **delete [product_name]**
 
+### Search for Product:
+To search for a product, type in:
+
+**search [product_name]**
+
 
 

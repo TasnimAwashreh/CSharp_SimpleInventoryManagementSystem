@@ -35,6 +35,8 @@ namespace SIMS.Models
                     break;
                 case Command.delete: 
                     delete(productInfo); break;
+                case Command.search:
+                    search(productInfo); break;
                 case Command.none:
                     Console.WriteLine("\n Please enter an appropriate action");
                     break;
@@ -106,7 +108,6 @@ namespace SIMS.Models
             }
             else Console.WriteLine($"Please enter commands in the correct form");
         }
-
         public void delete(string[] productInfo)
         {
             if (productInfo.Length == 2)
@@ -128,8 +129,26 @@ namespace SIMS.Models
             }
             else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
         }
-    }
+        public void search(string[] productInfo)
+        { 
+            if (productInfo.Length == 2)
+            {
+                string productName = productInfo[1];
+                Product? existingProduct = _productService.FindProduct(productName);
+                if (existingProduct != null)
+                {
+                    Console.WriteLine($"Search Result: {existingProduct.ToString()}");
+                }
+                else Console.WriteLine($"The product with the name {productName} does not exist");
 
-    
+            }
+            else Console.WriteLine($"Please use the format: 'search [product_name]' to view that product's details");
+        }
+
+
+
+
+
+    }
 }
 

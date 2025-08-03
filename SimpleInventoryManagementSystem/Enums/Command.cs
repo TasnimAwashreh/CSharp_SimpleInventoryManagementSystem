@@ -16,6 +16,7 @@ namespace SIMS.Enums
         edit_quantity,
         edit_name,
         delete,
+        search,
     }
     public class UserCommands
     {
@@ -35,6 +36,8 @@ namespace SIMS.Enums
                     return Command.edit_name;
                 case "delete":
                     return Command.delete;
+                case "search":
+                    return Command.search;
                 default:
                     return Command.none;
             }
