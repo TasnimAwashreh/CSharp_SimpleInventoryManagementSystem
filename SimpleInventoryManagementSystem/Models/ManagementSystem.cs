@@ -6,9 +6,9 @@ namespace SIMS.Models
 {
     public class ManagementSystem
     {
-        private ProductService _productService;
+        private InventoryService _productService;
 
-        public ManagementSystem(ProductService productService)
+        public ManagementSystem(InventoryService productService)
         {
             _productService = productService;
         }
@@ -37,6 +37,8 @@ namespace SIMS.Models
                     delete(productInfo); break;
                 case Command.search:
                     search(productInfo); break;
+                case Command.exit:
+                    Environment.Exit(0); break;
                 case Command.none:
                     Console.WriteLine("\n Please enter an appropriate action");
                     break;
@@ -64,7 +66,7 @@ namespace SIMS.Models
                     else Console.WriteLine($"\n The product '{productName}' already exists. ");
                 }
                 catch (FormatException) { Console.WriteLine("\n Please enter price and quantity as numbers"); }
-                catch (Exception ex) { Console.WriteLine("\n Please enter information in the correct format"); }
+                catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
             else Console.WriteLine("Please enter the product name, price, and product quantity to insert");
 
@@ -104,7 +106,7 @@ namespace SIMS.Models
                     else Console.WriteLine($"The product with the name {productName} does not exist");
                 }
                 catch (FormatException) {Console.WriteLine("\n Please enter price and quantity as numbers"); }
-                catch (Exception ex) { Console.WriteLine("\n Please enter information in the correct format"); }
+                catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
             else Console.WriteLine($"Please enter commands in the correct form");
         }
@@ -125,7 +127,7 @@ namespace SIMS.Models
                     }
                     else Console.WriteLine($"The product with the name {productName} does not exist");
                 }
-                catch (Exception ex) { Console.WriteLine("\n Please enter information in the correct format"); }
+                catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
             else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
         }

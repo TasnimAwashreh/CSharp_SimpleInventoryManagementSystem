@@ -46,5 +46,8 @@ To search for a product, type in:
 
 **search [product_name]**
 
+### Exit the program:
+To exit, type in: **Exit**
+
 
 

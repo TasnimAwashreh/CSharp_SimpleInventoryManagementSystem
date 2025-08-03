@@ -54,12 +54,17 @@ class Program
 
                 - To delete product:
                   'delete [product_name]'
+
+                - To search for a product:
+                  'search [product_name]'
+
+                - To exit: simply type 'exit'
             """;
         return controls;
     }
     static void Main(string[] args)
     {
-        ProductService productService = new ProductService([]);
+        InventoryService productService = new InventoryService([]);
         ManagementSystem system = new ManagementSystem(productService);
         Console.WriteLine(introduction());
         startLoop(system);

@@ -17,6 +17,7 @@ namespace SIMS.Enums
         edit_name,
         delete,
         search,
+        exit
     }
     public class UserCommands
     {
@@ -38,6 +39,8 @@ namespace SIMS.Enums
                     return Command.delete;
                 case "search":
                     return Command.search;
+                case "exit":
+                    return Command.exit;
                 default:
                     return Command.none;
             }

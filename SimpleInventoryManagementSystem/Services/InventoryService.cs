@@ -7,11 +7,11 @@ using SIMS.Models;
 
 namespace SIMS.Services
 {
-    public class ProductService
+    public class InventoryService
     {
         private List<Product> inventory;
 
-        public ProductService(List<Product> inventory)
+        public InventoryService(List<Product> inventory)
         {
             this.inventory = inventory;
         }
