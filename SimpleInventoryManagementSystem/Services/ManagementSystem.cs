@@ -24,13 +24,13 @@ namespace SIMS.Services
                     View(productInfo);
                     break;
                 case Command.EditName:
-                    Edit(productInfo, "", str => str, (product, newProductName) => _productService.UpdateProductName(product, newProductName));
+                    Edit(productInfo, str => str, (product, newProductName) => _productService.UpdateProductName(product, newProductName));
                     break;
                 case Command.EditPrice:
-                    Edit(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
+                    Edit(productInfo, decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
                     break;
                 case Command.EditQuantity:
-                    Edit(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
+                    Edit(productInfo, int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
                     break;
                 case Command.Delete:
                     Delete(productInfo); break;
@@ -87,7 +87,7 @@ namespace SIMS.Services
                 Console.WriteLine(strBuilder.ToString());
             }
         }
-        public void Edit<T>(string[] productInfo, string editSuccessStr, Func<string, T> parseValue, Func<Product, T, bool> updateProduct)
+        public void Edit<T>(string[] productInfo, Func<string, T> parseValue, Func<Product, T, bool> updateProduct)
         {
             if (productInfo.Length != 3)
                 Console.WriteLine($"Please enter commands in the correct form");
