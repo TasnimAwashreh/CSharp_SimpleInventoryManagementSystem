@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using SIMS.Models;
 
 namespace SIMS.Services
@@ -47,12 +43,13 @@ namespace SIMS.Services
 
         public bool UpdateProductName(Product product, string newName)
         {
-            if (FindProduct(newName) == null)
+            if (FindProduct(newName) != null)
+                return false;
+            else
             {
                 product.UpdateName(newName);
                 return true;
             }
-            else return false;
         }
 
         public bool UpdateProductPrice(Product product, decimal newPrice)

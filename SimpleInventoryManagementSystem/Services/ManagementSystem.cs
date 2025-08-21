@@ -46,7 +46,9 @@ namespace SIMS.Services
 
         public void Insert(string[] productInfo)
         {
-            if (productInfo.Length == 4)
+            if (productInfo.Length != 4)
+                Console.WriteLine("Please enter the product name, price, and product quantity to insert");
+            else
             {
                 try
                 {
@@ -55,26 +57,27 @@ namespace SIMS.Services
                     int quantity = int.Parse(productInfo[3]);
 
                     Product? getProduct = _productService.FindProduct(productName);
-                    if (getProduct == null)
+                    if (getProduct != null)
+                        Console.WriteLine($"\n The product '{productName}' already exists. ");
+                    else
                     {
                         Product newProduct = new Product(productName, price, quantity);
                         bool isInsertSuccess = _productService.InsertProduct(newProduct);
                         if (isInsertSuccess) Console.WriteLine($"\n Product {productName} has been inserted successfully. Total Inventory: {_productService.GetCount()} products");
                         else Console.WriteLine($"\n Error: Product has not been inserted, please try again");
                     }
-                    else Console.WriteLine($"\n The product '{productName}' already exists. ");
                 }
                 catch (FormatException) { Console.WriteLine("\n Please enter price and quantity as numbers"); }
                 catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
-            else Console.WriteLine("Please enter the product name, price, and product quantity to insert");
-
         }
         public void View(string[] productInfo)
         {
             StringBuilder strBuilder = new StringBuilder();
             List<Product> inventory = _productService.GetInventory();
-            if (inventory.Count > 0)
+            if (inventory.Count <= 0)
+                Console.WriteLine("\n Inventory is currently empty");
+            else
             {
                 strBuilder.Append("\n Inventory: \n");
                 foreach (Product product in inventory)
@@ -83,11 +86,12 @@ namespace SIMS.Services
                 }
                 Console.WriteLine(strBuilder.ToString());
             }
-            else Console.WriteLine("\n Inventory is currently empty");
         }
         public void Edit<T>(string[] productInfo, string editSuccessStr, Func<string, T> parseValue, Func<Product, T, bool> updateProduct)
         {
-            if (productInfo.Length == 3)
+            if (productInfo.Length != 3)
+                Console.WriteLine($"Please enter commands in the correct form");
+            else
             {
                 try
                 {
@@ -95,57 +99,56 @@ namespace SIMS.Services
                     T newValue = parseValue(productInfo[2]);
 
                     Product? existingProduct = _productService.FindProduct(productName);
-                    if (existingProduct != null)
+                    if (existingProduct == null)
+                        Console.WriteLine($"The product with the name {productName} does not exist");
+                    else
                     {
                         bool success = updateProduct(existingProduct, newValue);
                         if (success) Console.WriteLine("Product has been successfully updated");
                         else Console.WriteLine("\n Product has not been updated. Please try again. If you are updating the name, " +
                             "please make sure the new product name does not conflict with an older product's name");
                     }
-                    else Console.WriteLine($"The product with the name {productName} does not exist");
+                    
                 }
                 catch (FormatException) { Console.WriteLine("\n Please enter price and quantity as numbers"); }
                 catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
-            else Console.WriteLine($"Please enter commands in the correct form");
         }
         public void Delete(string[] productInfo)
         {
-            if (productInfo.Length == 2)
+            if (productInfo.Length != 2)
+                Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
+            else
             {
                 try
                 {
                     string productName = productInfo[1];
 
                     Product? existingProduct = _productService.FindProduct(productName);
-                    if (existingProduct != null)
+                    if (existingProduct == null)
+                        Console.WriteLine($"The product with the name {productName} does not exist");
+                    else
                     {
                         bool isSuccess = _productService.DeleteProduct(existingProduct);
                         if (isSuccess) Console.WriteLine("Product has been successfully deleted");
                         else Console.WriteLine("\n There has been a problem deleting the product. Please try again later");
                     }
-                    else Console.WriteLine($"The product with the name {productName} does not exist");
                 }
                 catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
-            else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
         }
         public void Search(string[] productInfo)
         {
-            if (productInfo.Length == 2)
+            if (productInfo.Length != 2)
+                Console.WriteLine($"Please use the format: 'search [product_name]' to view that product's details");
+            else
             {
                 string productName = productInfo[1];
                 Product? existingProduct = _productService.FindProduct(productName);
-                if (existingProduct != null)
-                {
-                    Console.WriteLine($"Search Result: {existingProduct.ToString()}");
-                }
-                else Console.WriteLine($"The product with the name {productName} does not exist");
-
+                if (existingProduct == null) Console.WriteLine($"The product with the name {productName} does not exist");
+                else Console.WriteLine($"Search Result: {existingProduct}");
             }
-            else Console.WriteLine($"Please use the format: 'search [product_name]' to view that product's details");
         }
-
     }
 }
 
