@@ -1,6 +1,5 @@
-﻿using SIMS.Enums;
-using SIMS.Models;
-using SIMS.Services;
+﻿using SIMS.Services;
+using SIMS.Enums;
 
 class Program
 {

@@ -1,8 +1,8 @@
 ﻿using SIMS.Enums;
 using System.Text;
-using SIMS.Services;
-using System.Diagnostics;
-namespace SIMS.Models
+using SIMS.Models;
+
+namespace SIMS.Services
 {
     public class ManagementSystem
     {
@@ -24,15 +24,15 @@ namespace SIMS.Models
                     View(productInfo);
                     break;
                 case Command.EditName:
-                    Edit<string>(productInfo, "", str => str , (product, newProductName) => _productService.UpdateProductName(product, newProductName));
+                    Edit(productInfo, "", str => str, (product, newProductName) => _productService.UpdateProductName(product, newProductName));
                     break;
                 case Command.EditPrice:
-                    Edit<decimal>(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
+                    Edit(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
                     break;
                 case Command.EditQuantity:
-                    Edit<int>(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
+                    Edit(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
                     break;
-                case Command.Delete: 
+                case Command.Delete:
                     Delete(productInfo); break;
                 case Command.Search:
                     Search(productInfo); break;
@@ -85,7 +85,7 @@ namespace SIMS.Models
             }
             else Console.WriteLine("\n Inventory is currently empty");
         }
-        public void Edit<T>(string[] productInfo, string editSuccessStr, Func<string,T> parseValue, Func<Product,T,bool> updateProduct)
+        public void Edit<T>(string[] productInfo, string editSuccessStr, Func<string, T> parseValue, Func<Product, T, bool> updateProduct)
         {
             if (productInfo.Length == 3)
             {
@@ -94,8 +94,8 @@ namespace SIMS.Models
                     string productName = productInfo[1];
                     T newValue = parseValue(productInfo[2]);
 
-                    Product? existingProduct = _productService.FindProduct(productName); 
-                    if (existingProduct != null )
+                    Product? existingProduct = _productService.FindProduct(productName);
+                    if (existingProduct != null)
                     {
                         bool success = updateProduct(existingProduct, newValue);
                         if (success) Console.WriteLine("Product has been successfully updated");
@@ -104,7 +104,7 @@ namespace SIMS.Models
                     }
                     else Console.WriteLine($"The product with the name {productName} does not exist");
                 }
-                catch (FormatException) {Console.WriteLine("\n Please enter price and quantity as numbers"); }
+                catch (FormatException) { Console.WriteLine("\n Please enter price and quantity as numbers"); }
                 catch { Console.WriteLine("\n Please enter information in the correct format"); }
             }
             else Console.WriteLine($"Please enter commands in the correct form");
@@ -131,7 +131,7 @@ namespace SIMS.Models
             else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
         }
         public void Search(string[] productInfo)
-        { 
+        {
             if (productInfo.Length == 2)
             {
                 string productName = productInfo[1];
@@ -145,10 +145,6 @@ namespace SIMS.Models
             }
             else Console.WriteLine($"Please use the format: 'search [product_name]' to view that product's details");
         }
-
-
-
-
 
     }
 }
