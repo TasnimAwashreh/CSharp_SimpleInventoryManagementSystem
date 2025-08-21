@@ -17,29 +17,29 @@ namespace SIMS.Models
         {
             switch (command)
             {
-                case Command.insert:
+                case Command.Insert:
                     insert(productInfo);
                     break;
-                case Command.view:
+                case Command.View:
                     view(productInfo);
                     break;
-                case Command.edit_name:
+                case Command.EditName:
 
                     edit<string>(productInfo, "", str => str , (product, newProductName) => _productService.UpdateProductName(product, newProductName));
                     break;
-                case Command.edit_price:
+                case Command.EditPrice:
                     edit<decimal>(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
                     break;
-                case Command.edit_quantity:
+                case Command.EditQuantity:
                     edit<int>(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
                     break;
-                case Command.delete: 
+                case Command.Delete: 
                     delete(productInfo); break;
-                case Command.search:
+                case Command.Search:
                     search(productInfo); break;
-                case Command.exit:
+                case Command.Exit:
                     Environment.Exit(0); break;
-                case Command.none:
+                case Command.None:
                     Console.WriteLine("\n Please enter an appropriate action");
                     break;
             }

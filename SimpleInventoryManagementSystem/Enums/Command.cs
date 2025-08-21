@@ -9,15 +9,15 @@ namespace SIMS.Enums
 {
     public enum Command
     {
-        none,
-        insert,
-        view,
-        edit_price,
-        edit_quantity,
-        edit_name,
-        delete,
-        search,
-        exit
+        None = 0,
+        Insert = 1,
+        View = 2,
+        EditPrice = 3,
+        EditQuantity = 4,
+        EditName = 5,
+        Delete = 6,
+        Search = 7,
+        Exit = 8
     }
     public class UserCommands
     {
@@ -26,23 +26,23 @@ namespace SIMS.Enums
             switch (command.ToLower())
             {
                 case "insert": 
-                    return Command.insert;
+                    return Command.Insert;
                 case "view":
-                    return Command.view;
+                    return Command.View;
                 case "edit_price":
-                    return Command.edit_price;
+                    return Command.EditPrice;
                 case "edit_quantity":
-                    return Command.edit_quantity;
+                    return Command.EditQuantity;
                 case "edit_name":
-                    return Command.edit_name;
+                    return Command.EditName;
                 case "delete":
-                    return Command.delete;
+                    return Command.Delete;
                 case "search":
-                    return Command.search;
+                    return Command.Search;
                 case "exit":
-                    return Command.exit;
+                    return Command.Exit;
                 default:
-                    return Command.none;
+                    return Command.None;
             }
         }
     }
