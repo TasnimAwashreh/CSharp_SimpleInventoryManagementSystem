@@ -4,15 +4,15 @@ using SIMS.Services;
 
 class Program
 {
-    public static void processInput(ManagementSystem system, string userInput)
+    public static void ProcessInput(ManagementSystem managementSystem, string userInput)
     {
         string[] productInfo = userInput.Split(' ');
         string userCommand = productInfo[0];
-        Command command = UserCommands.GetCommand(userCommand);
-        system.executeCommand(productInfo, command);
+        Command command = UserCommands.ParseCommand(userCommand);
+        managementSystem.ExecuteCommand(productInfo, command);
 
     }
-    public static void startLoop(ManagementSystem system)
+    public static void StartLoop(ManagementSystem system)
     {
         while (true)
         {
@@ -22,12 +22,12 @@ class Program
                 Console.WriteLine("Empty input: Please try again");
             else
             {
-                processInput(system, input);
+                ProcessInput(system, input);
             }
         }
     }
 
-    public static string introduction()
+    public static string Introduction()
     {
         string controls =
             $"""
@@ -66,7 +66,7 @@ class Program
     {
         InventoryService productService = new InventoryService([]);
         ManagementSystem system = new ManagementSystem(productService);
-        Console.WriteLine(introduction());
-        startLoop(system);
+        Console.WriteLine(Introduction());
+        StartLoop(system);
     }
 }

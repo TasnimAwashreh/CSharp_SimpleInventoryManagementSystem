@@ -13,30 +13,29 @@ namespace SIMS.Models
             _productService = productService;
         }
 
-        public void executeCommand(string[] productInfo, Command command)
+        public void ExecuteCommand(string[] productInfo, Command command)
         {
             switch (command)
             {
                 case Command.Insert:
-                    insert(productInfo);
+                    Insert(productInfo);
                     break;
                 case Command.View:
-                    view(productInfo);
+                    View(productInfo);
                     break;
                 case Command.EditName:
-
-                    edit<string>(productInfo, "", str => str , (product, newProductName) => _productService.UpdateProductName(product, newProductName));
+                    Edit<string>(productInfo, "", str => str , (product, newProductName) => _productService.UpdateProductName(product, newProductName));
                     break;
                 case Command.EditPrice:
-                    edit<decimal>(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
+                    Edit<decimal>(productInfo, "", decimal.Parse, (product, newPrice) => _productService.UpdateProductPrice(product, newPrice));
                     break;
                 case Command.EditQuantity:
-                    edit<int>(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
+                    Edit<int>(productInfo, "", int.Parse, (product, newQty) => _productService.UpdateProductQty(product, newQty));
                     break;
                 case Command.Delete: 
-                    delete(productInfo); break;
+                    Delete(productInfo); break;
                 case Command.Search:
-                    search(productInfo); break;
+                    Search(productInfo); break;
                 case Command.Exit:
                     Environment.Exit(0); break;
                 case Command.None:
@@ -45,7 +44,7 @@ namespace SIMS.Models
             }
         }
 
-        public void insert(string[] productInfo)
+        public void Insert(string[] productInfo)
         {
             if (productInfo.Length == 4)
             {
@@ -71,7 +70,7 @@ namespace SIMS.Models
             else Console.WriteLine("Please enter the product name, price, and product quantity to insert");
 
         }
-        public void view(string[] productInfo)
+        public void View(string[] productInfo)
         {
             StringBuilder strBuilder = new StringBuilder();
             List<Product> inventory = _productService.GetInventory();
@@ -86,7 +85,7 @@ namespace SIMS.Models
             }
             else Console.WriteLine("\n Inventory is currently empty");
         }
-        public void edit<T>(string[] productInfo, string editSuccessStr, Func<string,T> parseValue, Func<Product,T,bool> updateProduct)
+        public void Edit<T>(string[] productInfo, string editSuccessStr, Func<string,T> parseValue, Func<Product,T,bool> updateProduct)
         {
             if (productInfo.Length == 3)
             {
@@ -110,7 +109,7 @@ namespace SIMS.Models
             }
             else Console.WriteLine($"Please enter commands in the correct form");
         }
-        public void delete(string[] productInfo)
+        public void Delete(string[] productInfo)
         {
             if (productInfo.Length == 2)
             {
@@ -131,7 +130,7 @@ namespace SIMS.Models
             }
             else Console.WriteLine($"Please use the format: 'delete [product_name]' to delete a product");
         }
-        public void search(string[] productInfo)
+        public void Search(string[] productInfo)
         { 
             if (productInfo.Length == 2)
             {

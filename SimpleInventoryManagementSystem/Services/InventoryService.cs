@@ -49,7 +49,7 @@ namespace SIMS.Services
         {
             if (FindProduct(newName) == null)
             {
-                product.updateName(newName);
+                product.UpdateName(newName);
                 return true;
             }
             else return false;
@@ -57,13 +57,13 @@ namespace SIMS.Services
 
         public bool UpdateProductPrice(Product product, decimal newPrice)
         {
-            product.updatePrice(newPrice);
+            product.UpdatePrice(newPrice);
             return true;
         }
 
         public bool UpdateProductQty(Product product, int newQty)
         {
-            product.updateQty(newQty);
+            product.UpdateQty(newQty);
             return true;
         }
 

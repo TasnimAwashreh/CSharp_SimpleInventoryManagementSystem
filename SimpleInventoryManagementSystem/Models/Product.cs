@@ -19,17 +19,17 @@ namespace SIMS.Models
         public decimal GetPrice() {return price;}
         public int GetQty() {return quantity;}
 
-        public void updateName(string newName)
+        public void UpdateName(string newName)
         {
             this.productName = newName;
         }
 
-        public void updatePrice(decimal newPrice)
+        public void UpdatePrice(decimal newPrice)
         {
             this.price = newPrice;
         }
 
-        public void updateQty(int newQty)
+        public void UpdateQty(int newQty)
         {
             this.quantity = newQty;
         }

@@ -21,7 +21,7 @@ namespace SIMS.Enums
     }
     public class UserCommands
     {
-        public static Command GetCommand(string command)
+        public static Command ParseCommand(string command)
         {
             switch (command.ToLower())
             {
