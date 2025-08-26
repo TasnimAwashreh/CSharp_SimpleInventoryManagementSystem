@@ -4,39 +4,39 @@ namespace SIMS.Models
 {
     public class Product
     {
-        private string productName;
-        private decimal price;
-        private int quantity; 
+        private string _productName;
+        private decimal _price;
+        private int _quantity; 
 
         public Product(string productName, decimal price, int quantity) 
         {
-            this.productName = productName;
-            this.price = price;
-            this.quantity = quantity;
+            this._productName = productName;
+            this._price = price;
+            this._quantity = quantity;
         }
 
-        public string GetName() {return productName;}
-        public decimal GetPrice() {return price;}
-        public int GetQty() {return quantity;}
+        public string GetName() {return _productName; }
+        public decimal GetPrice() {return _price; }
+        public int GetQty() {return _quantity; }
 
         public void UpdateName(string newName)
         {
-            this.productName = newName;
+            this._productName = newName;
         }
 
         public void UpdatePrice(decimal newPrice)
         {
-            this.price = newPrice;
+            this._price = newPrice;
         }
 
         public void UpdateQty(int newQty)
         {
-            this.quantity = newQty;
+            this._quantity = newQty;
         }
 
         public override string ToString()
         {
-            return $"{productName}: Price: {price}; Qty: {quantity}";
+            return $"{_productName}: Price: {_price}; Qty: {_quantity}";
         }
 
     }

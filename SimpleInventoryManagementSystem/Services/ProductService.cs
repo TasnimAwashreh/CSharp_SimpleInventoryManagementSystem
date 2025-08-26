@@ -3,28 +3,28 @@ using SIMS.Models;
 
 namespace SIMS.Services
 {
-    public class InventoryService
+    public class ProductService
     {
-        private List<Product> inventory;
+        private List<Product> _products;
 
-        public InventoryService(List<Product> inventory)
+        public ProductService(List<Product> products)
         {
-            this.inventory = inventory;
+            this._products = products;
         }
 
         public int GetCount() 
         { 
-            return inventory.Count;
+            return _products.Count;
         }
 
-        public List<Product> GetInventory()
+        public List<Product> GetProducts()
         {
-            return this.inventory;
+            return this._products;
         }
 
         public Product? FindProduct(string name)
         {
-            foreach (var product in inventory)
+            foreach (var product in _products)
             {
                 if (product.GetName() == name)
                 {
@@ -36,20 +36,18 @@ namespace SIMS.Services
 
         public bool InsertProduct(Product product)
         {
-            int inventorySize = inventory.Count;
-            inventory.Add(product);
-            return inventory.Count > inventorySize;
+            int productListSize = _products.Count;
+            _products.Add(product);
+            return _products.Count > productListSize;
         }
 
         public bool UpdateProductName(Product product, string newName)
         {
             if (FindProduct(newName) != null)
                 return false;
-            else
-            {
-                product.UpdateName(newName);
-                return true;
-            }
+            product.UpdateName(newName);
+            return true;
+            
         }
 
         public bool UpdateProductPrice(Product product, decimal newPrice)
@@ -68,7 +66,7 @@ namespace SIMS.Services
         {
             try
             {
-                inventory.Remove(product);
+                _products.Remove(product);
                 return true;
             }
             catch {return false; }

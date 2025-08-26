@@ -7,7 +7,7 @@ class Program
     {
         string[] productInfo = userInput.Split(' ');
         string userCommand = productInfo[0];
-        Command command = UserCommands.ParseCommand(userCommand);
+        Command command = userCommand.ParseCommand();
         managementSystem.ExecuteCommand(productInfo, command);
 
     }
@@ -63,7 +63,7 @@ class Program
     }
     static void Main(string[] args)
     {
-        InventoryService productService = new InventoryService([]);
+        ProductService productService = new ProductService([]);
         ManagementSystem system = new ManagementSystem(productService);
         Console.WriteLine(Introduction());
         StartLoop(system);

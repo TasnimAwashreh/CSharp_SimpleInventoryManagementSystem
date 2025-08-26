@@ -13,9 +13,12 @@ namespace SIMS.Enums
         Search = 7,
         Exit = 8
     }
-    public class UserCommands
+
+
+
+    public static class UserCommands
     {
-        public static Command ParseCommand(string command)
+        public static Command ParseCommand(this string command)
         {
             switch (command.ToLower())
             {
