@@ -5,12 +5,13 @@ class Program
 {
     public static void ProcessInput(ManagementSystem managementSystem, string userInput)
     {
-        string[] productInfo = userInput.Split(' ');
-        string userCommand = productInfo[0];
-        Command command = userCommand.ParseCommand();
+        var productInfo = userInput.Split(' ');
+        var userCommand = productInfo[0];
+        var command = userCommand.ParseCommand();
         managementSystem.ExecuteCommand(productInfo, command);
 
     }
+
     public static void StartLoop(ManagementSystem system)
     {
         while (true)
@@ -28,7 +29,7 @@ class Program
 
     public static string Introduction()
     {
-        string controls =
+        var controls =
             $"""
             ============================================================================================
             **                                                                                        **
@@ -61,10 +62,11 @@ class Program
             """;
         return controls;
     }
+
     static void Main(string[] args)
     {
-        ProductService productService = new ProductService([]);
-        ManagementSystem system = new ManagementSystem(productService);
+        var inventoryService = new InventoryService();
+        var system = new ManagementSystem(inventoryService);
         Console.WriteLine(Introduction());
         StartLoop(system);
     }

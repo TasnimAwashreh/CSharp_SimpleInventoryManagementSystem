@@ -1,5 +1,4 @@
-﻿
-namespace SIMS.Enums
+﻿namespace SIMS.Enums
 {
     public enum Command
     {
@@ -13,8 +12,6 @@ namespace SIMS.Enums
         Search = 7,
         Exit = 8
     }
-
-
 
     public static class UserCommands
     {
