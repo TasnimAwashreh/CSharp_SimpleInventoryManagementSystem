@@ -1,24 +1,19 @@
-﻿using SIMS.Models;
+﻿using SimpleInventoryManagementSystem.Data.Models;
 
-namespace SIMS.Services
+namespace SimpleInventoryManagementSystem.Data.Repository
 {
-    public class InventoryService
+    public class InventoryRepository : IInventoryRepository
     {
         private List<Product> _products;
 
-        public InventoryService()
+        public InventoryRepository()
         {
-            this._products = new();
-        }
-
-        public int GetCount() 
-        { 
-            return _products.Count;
+            _products = new();
         }
 
         public List<Product> GetProducts()
         {
-            return this._products;
+            return _products;
         }
 
         public Product? FindProduct(string name)

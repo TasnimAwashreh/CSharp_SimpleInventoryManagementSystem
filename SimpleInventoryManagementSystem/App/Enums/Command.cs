@@ -1,4 +1,4 @@
-﻿namespace SIMS.Enums
+﻿namespace SimpleInventoryManagementSystem.App.Enums
 {
     public enum Command
     {
@@ -19,7 +19,7 @@
         {
             switch (command.ToLower())
             {
-                case "insert": 
+                case "insert":
                     return Command.Insert;
                 case "view":
                     return Command.View;
