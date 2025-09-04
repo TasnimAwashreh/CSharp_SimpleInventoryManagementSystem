@@ -51,5 +51,7 @@
         public const string UpdatePriceFormatIncorrect = "Please enter the product name and new price";
         public const string UpdateQtyFormatIncorrect = "Please enter the product name and new quantity";
         public const string AppropriateActionError = "\n Please enter an appropriate action";
+        public const string DeleteProduct = "Please enter the name of the product you wish to delete";
+        public const string SearchProduct = "Please enter the name of the product you wish to search";
     }
 }

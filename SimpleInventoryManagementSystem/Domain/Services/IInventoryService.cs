@@ -1,4 +1,6 @@
-﻿namespace SimpleInventoryManagementSystem.Logic.Services
+﻿using SimpleInventoryManagementSystem.Data.Models;
+
+namespace SimpleInventoryManagementSystem.Logic.Services
 {
     public interface IInventoryService
     {
@@ -8,7 +10,7 @@
         bool UpdateName(string productName, string newProductName);
         bool UpdatePrice(string productName, decimal newPrice);
         bool UpdateQuantity(string productName, int newQty);
-        void Delete(string[] productInfo);
-        void Search(string[] productInfo);
+        public bool Delete(string productName);
+        public Product? Search(string productName);
     }
 }

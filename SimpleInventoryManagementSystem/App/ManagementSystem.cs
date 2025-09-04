@@ -86,9 +86,9 @@ namespace SimpleInventoryManagementSystem.App
 
                     try
                     {
-                        string productName = productInfo[1];
+                        string newQuantityProductName = productInfo[1];
                         int newQty = int.Parse(productInfo[2]);
-                        bool isSuccesful = _inventoryService.UpdateQuantity(productName, newQty);
+                        bool isSuccesful = _inventoryService.UpdateQuantity(newQuantityProductName, newQty);
                         if (!isSuccesful) Console.WriteLine(Constants.ProductDoesNotExist);
                         else Console.WriteLine(Constants.SuccessfulProductUpdate);
                     }
@@ -97,11 +97,34 @@ namespace SimpleInventoryManagementSystem.App
 
                     break;
                 case Command.Delete:
-                    _inventoryService.Delete(productInfo); break;
+                    if (productInfo.Length != 2)
+                    {
+                        Console.WriteLine(Constants.DeleteProduct);
+                        break;
+                    }
+
+                    string deleteProductName = productInfo[1];
+                    var deletedResult = _inventoryService.Delete(deleteProductName);
+                    if(!deletedResult)
+                        Console.WriteLine(Constants.ProductDoesNotExist);
+                    else Console.WriteLine($"Product {deleteProductName} has been deleted successfully");
+                    break;
                 case Command.Search:
-                    _inventoryService.Search(productInfo); break;
+                    if (productInfo.Length != 2)
+                    {
+                        Console.WriteLine(Constants.SearchProduct);
+                        break;
+                    }
+
+                    string searchProductName = productInfo[1];
+                    var searchResult = _inventoryService.Search(searchProductName);
+                    if (searchResult == null)
+                        Console.WriteLine(Constants.ProductDoesNotExist);
+                    else Console.WriteLine($"Search Result: {searchResult}");
+                    break;
                 case Command.Exit:
-                    Environment.Exit(0); break;
+                    Environment.Exit(0); 
+                    break;
                 case Command.None:
                     Console.WriteLine(Constants.AppropriateActionError);
                     break;
