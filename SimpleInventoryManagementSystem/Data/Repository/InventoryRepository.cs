@@ -18,14 +18,8 @@ namespace SimpleInventoryManagementSystem.Data.Repository
 
         public Product? FindProduct(string name)
         {
-            foreach (var product in _products)
-            {
-                if (product.ProductName == name)
-                {
-                    return product;
-                }
-            }
-            return null;
+            Product? product = _products.Where(p => p.ProductName == name).FirstOrDefault();
+            return product;
         }
 
         public bool InsertProduct(Product product)
